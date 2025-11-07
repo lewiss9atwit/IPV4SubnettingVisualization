@@ -6,6 +6,8 @@ public class calculator
 	// This will return the subnet Mask of the department
 	public String SubnetMaskCalc(department dep)
 	{
-		return "255.255.255.128";
+	    System.out.print("skibidi");
+	
+	    return "255.255.255.128";
 	}
 }
