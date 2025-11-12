@@ -39,6 +39,9 @@ public class main
 	{
 		// Checking if we can push
 		System.out.println("test");
+		department test = new department("Testing", 29);
+		boolean testWored = calculator.SubnetCalc(test, "192.170.50.5/22");
 	}
+	
 	
 }

@@ -3,8 +3,8 @@ package app;
 public class department
 {
 	
-	private String name;
-	private int ipsNeeded;
+	public String name;
+	public int ipsNeeded;
 	
 	
 	// This will be the department which has a name and the amount of IPs they need
