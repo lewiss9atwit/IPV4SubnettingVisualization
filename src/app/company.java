@@ -2,6 +2,8 @@ package app;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 public class company
 {
 	String name;
@@ -52,25 +54,27 @@ public class company
 		
 		long baseEnd = currentIp + (long) Math.pow(2, 32-prefixLength)-1;
 		
+		subnetRange ipRange = new subnetRange(currentIp, baseEnd);
+		
+		List<subnetRange> ipRanges = new ArrayList<>();
+		ipRanges.add(ipRange);
+		
+		
+		
+		
+		
 		System.out.println("Starting point IP: " + calculator.longToIP(currentIp));
 		System.out.println("Base end IP: " + calculator.longToIP(baseEnd));
 		
 		System.out.println("Amount of Ips = " + (baseEnd-currentIp));
 		
 		
+		
+		
 		for (department d: deps)
 		{
 			
-			boolean poss = calculator.subnetCalc(d, currentIp, baseEnd);
-			
-			if (!poss) 
-			{
-				return false;
-			}
-			
-			currentIp = d.broadcastAddress + 1;
-			
-			
+			calculator.subnetCalc(d, ipRanges);
 			
 		}
 		

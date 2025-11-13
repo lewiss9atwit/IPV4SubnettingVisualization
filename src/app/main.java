@@ -40,10 +40,10 @@ public class main
 		// Checking if we can push
 		System.out.println("test");
 		department test = new department("Testing", 62);
-		department test2 = new department("TestingBoth", 62);
-		department test3 = new department("Testing3", 126);
-		department test4 = new department("Testing4", 128);
-		department[] deps = new department[] {test, test2,test3,test4};
+		department test2 = new department("TestingBoth", 126);
+		department test3 = new department("Testing3", 62);
+		department test4 = new department("Testing4", 254);
+		department[] deps = new department[] {test, test2,test4, test3};
 		
 		company testCompany = new company("Company", "192.170.50.5/23", deps);
 		boolean testCompanySubnet = testCompany.subnetCompany();
