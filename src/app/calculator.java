@@ -11,7 +11,7 @@ public class calculator
 		
 		if (!subnettingPossible(baseIp, baseEnd, dep.ipsNeeded)) {return false;}
 		int bitsNeeded = 0;
-		while (Math.pow(2, bitsNeeded) < dep.ipsNeeded)
+		while (Math.pow(2, bitsNeeded)-2 < dep.ipsNeeded)
 		{
 			bitsNeeded++;
 		}
