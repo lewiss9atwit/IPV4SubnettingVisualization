@@ -49,20 +49,20 @@ public class main extends Application
 	{
 		Scanner input = new Scanner(System.in);
 		
-		
+		/*
 		department test = new department("Testing", 62);
 		department test2 = new department("TestingBoth", 126);
 		department test3 = new department("Testing3", 62);
 		department test4 = new department("Testing4", 254);
 		department test5 = new department("Testing5", 510);
 		department test6 = new department("Testing 6", 29);
-		department[] deps = new department[] {test, test2,test4, test3};
+		department[] deps = new department[] {test3, test6};
 		company testComp = new company("Comp", "192.156.24.5/24", deps);
 		testComp.subnetCompany();
+		*/
 		
 		
 		
-        /*// Main program
 		ArrayList<department> departments = new ArrayList<>();
 		System.out.println("What do you want to call this company:");
 		String Company = input.nextLine();
@@ -100,15 +100,17 @@ public class main extends Application
 			
 		}
 		
+		// Sorts departments to have the deparments with the largest amount of ips first then descending down to the next max until the end
+		departments.sort((a, b) -> Integer.compare(b.ipsNeeded, a.ipsNeeded));
 		department[] deps = departments.toArray(department[]:: new);
 		
 		
 		
 		
 		
-		company testCompany = new company(Company, ipAddressBlock, deps);
-		testCompany.subnetCompany();
-		allNodes testV = new allNodes(testCompany);
+		company mainCompany = new company(Company, ipAddressBlock, deps);
+		mainCompany.subnetCompany();
+		allNodes companyNodes = new allNodes(mainCompany);
 		
 		/* testing subnetNode
 		for (subnetNode sn : testV.subnetNodes)
@@ -121,81 +123,72 @@ public class main extends Application
 		
 		
 		
-		// test circle
+		/*
+		allNodes companyNodes = new allNodes(mainCompany);
+		visualizeSubnets.visualPane(root, companyNodes);
 		
+		*/
+		
+		
+		
+		
+		
+		
+		
+
+		
+		/*
 		subnetNode testSn = new subnetNode(testComp.deps[0]);
-		Rectangle rect = new Rectangle(220, 100);
-        rect.setArcWidth(30);     // rounded corners
-        rect.setArcHeight(30);
-        rect.setFill(Color.LIGHTGREEN);
-        rect.setStroke(Color.BLACK);
-        rect.setStrokeWidth(2);
-        
-
-        
-        Text t0 = new Text(testSn.companyName);
-        Text s0 = new Text(testSn.size + " Ips");
-        Text t1 = new Text(testSn.networkAddress);
-        Text t2 = new Text(testSn.broadcastAddress);
-        Text t3 = new Text(testSn.subnetMask);
-        
-
-        VBox box = new VBox(1, t0, s0, t1, t2, t3);
-        box.setAlignment(Pos.CENTER);
-
-        // Setes Vbox in the center of the rectangle
-        box.layoutXProperty().bind(
-        	    rect.layoutXProperty()
-        	        .add(rect.widthProperty().subtract(box.widthProperty()).divide(2))
-        	);
-
-        	box.layoutYProperty().bind(
-        	    rect.layoutYProperty()
-        	        .add(rect.heightProperty().subtract(box.heightProperty()).divide(2))
-        	);
+		Rectangle testRec  = visuals.putTextInRec(root, testSn);
         	
-		Circle testC = new Circle(50);
-		testC.setFill(Color.LIGHTBLUE);
+		
 		double centerX = 1920 / 2.0;
 		double centerY = 1080 / 2.0;
 		
-		Text cText = new Text(256 + "");
 		
 		
 		// Puts the text in circle C
 		
 		
 		
-		Circle testR = new Circle(50);
-		testR.setFill(Color.LIGHTBLUE);
-		
-		Circle testB = new Circle(50);
-		testB.setFill(Color.LIGHTBLUE);
-		Circle testA = new Circle(50);
-		testA.setFill(Color.LIGHTBLUE);
-		
+		Group testCBubble = visuals.makeLabeledCircle(256, 50, Color.LIGHTBLUE);
+	    Circle testC = (Circle) testCBubble.getChildren().get(0);
+	    testC.setCenterX(centerX);
+		testC.setCenterY(centerY);
+
+	    Group testRBubble = visuals.makeLabeledCircle(128, 50, Color.LIGHTBLUE);
+	    Circle testR = (Circle) testRBubble.getChildren().get(0);
+
+	    Group testABubble = visuals.makeLabeledCircle(64, 50, Color.LIGHTBLUE);
+	    Circle testA = (Circle) testABubble.getChildren().get(0);
+
+	    Group testBBubble = visuals.makeLabeledCircle(64, 50, Color.LIGHTBLUE);
+	    Circle testB = (Circle) testBBubble.getChildren().get(0);
 
 		testC.setCenterX(centerX);
 		testC.setCenterY(centerY);
 		
-		Pane root = new Pane();
 		
-		root.getChildren().addAll(testC, testR, rect, box);
-		visuals.placeChildBubble(root, testC, rect, 200, 240);
+		
+		root.getChildren().addAll(testCBubble, testRBubble, testABubble, testBBubble);
+		visuals.placeChildBubble(root, testC, testRec, 200, 240);
 		visuals.placeChildBubble(root, testC, testR, 200, 300);
 		
-		root.getChildren().addAll(testB, testA);
 		visuals.placeChildBubble(root, testR, testA, 200, 300);
 		visuals.placeChildBubble(root, testR, testB, 200, 240);
 		
 		
+		*/
 		
+		Pane root = new Pane();
 		
+		visualizeSubnets.visualPane(root, companyNodes);
 		Scene scene = new Scene(root, 1920, 1080);
-		stage.setTitle("test window");
+		stage.setTitle(mainCompany.name + "'s IPV4 Subnetting");
 		stage.setScene(scene);
         stage.show();
 		
+        companyNodes.unusableDepmessages();
 		
 		
 	}

@@ -68,13 +68,9 @@ public class company
 		
 		
 		
-		
-		
 		this.startIp = ("Starting point IP: " + calculator.longToIP(currentIp) + "/" + prefix);
 		this.baseEndIp  = ("Base end IP: " + calculator.longToIP(baseEnd) + "/" + prefix);
 		this.totalIps = (baseEnd-currentIp + 1);
-		
-		
 		
 		
 		for (department d: deps)

@@ -90,6 +90,13 @@ public class allNodes
 	
 	public subnetNode findNode(subnetNode subNode, subnetNode curr)
 	{
+		
+		if (curr.depUses) {return null;}
+		if (curr.size < subNode.size)
+		{
+			return null;
+		}
+		
 		if (curr.size == subNode.size)
 		{
 			if(!curr.depUses && curr.left == null)
@@ -100,6 +107,9 @@ public class allNodes
 			return null;
 			
 		}
+		
+		
+		
 		
 		if (curr.left == null)
 		{
@@ -113,17 +123,21 @@ public class allNodes
 		subnetNode leftFound = findNode(subNode, curr.left);
 		if (leftFound != null) {return leftFound;}
 		return findNode(subNode, curr.right);
+	
 	}
 	
 	
 	
 	
-	public String unusableDepmessage(department d)
+	public void unusableDepmessages()
 	{
-		long blockSize = (long) Math.pow(2,  32- d.prefix);
 		
-		return ("There are not enough IPV4 Address available because " + blockSize + " IP Addresses are not available "
-				+ "for the department's " + d.ipsNeeded + " IP addresses it needs");
+		for (int i = 0; i < unusableDepartments.size(); i++)
+		{
+			department d = unusableDepartments.get(i);
+			
+			System.out.println("There are not enough IPV4 Address available because "+ d.ipsNeeded + " IPv4 Addresses are not available for the " + d.name + " deparment.");
+		}
 		
 	}
 }
