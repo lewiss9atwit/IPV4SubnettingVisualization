@@ -8,6 +8,9 @@ public class company
 {
 	String name;
 	String ipAddressBlock;
+	String startIp;
+	String baseEndIp;
+	long totalIps;
 	department[] deps;
 	boolean enoughIPs;
 	
@@ -23,12 +26,21 @@ public class company
 	}
 	
 	
-	public boolean ipAddressBlockValid()
+	public static boolean ipAddressBlockValid(String ipAddress)
 	{
-		String[] blockParts = ipAddressBlock.split("/");
+		
+		int indexOfSlash = ipAddress.indexOf("/");
+		
+		indexOfSlash= ipAddress.indexOf("/", indexOfSlash+1);
+		
+		if (indexOfSlash != -1) {return false;}
+		
+		
+		
+		String[] blockParts = ipAddress.split("/");
 		try {
 			InetAddress ip = InetAddress.getByName(blockParts[0]);
-			return ip.getHostAddress().equals(blockParts[0]) && ipAddressBlock.contains(".");
+			return ip.getHostAddress().equals(blockParts[0]) && ipAddress.contains(".");
 		}
 		catch (UnknownHostException ex)
 		{
@@ -37,22 +49,17 @@ public class company
 		
 	}
 	
-	public boolean subnetCompany()
+	public void subnetCompany()
 	{
-			
-		if (!ipAddressBlockValid())
-		{
-			return false;
-		}
 		
 		String[] ipParts = this.ipAddressBlock.split("/");
 		long baseIp = calculator.ipToLong(ipParts[0]);
-		int prefixLength = Integer.parseInt(ipParts[1]);
+		int prefix = Integer.parseInt(ipParts[1]);
 		
-		long mask = calculator.prefixToMask(prefixLength);
+		long mask = calculator.prefixToMask(prefix);
 		long currentIp = baseIp & mask;
 		
-		long baseEnd = currentIp + (long) Math.pow(2, 32-prefixLength)-1;
+		long baseEnd = currentIp + (long) Math.pow(2, 32-prefix)-1;
 		
 		subnetRange ipRange = new subnetRange(currentIp, baseEnd);
 		
@@ -63,10 +70,9 @@ public class company
 		
 		
 		
-		System.out.println("Starting point IP: " + calculator.longToIP(currentIp));
-		System.out.println("Base end IP: " + calculator.longToIP(baseEnd));
-		
-		System.out.println("Amount of Ips = " + (baseEnd-currentIp));
+		this.startIp = ("Starting point IP: " + calculator.longToIP(currentIp) + "/" + prefix);
+		this.baseEndIp  = ("Base end IP: " + calculator.longToIP(baseEnd) + "/" + prefix);
+		this.totalIps = (baseEnd-currentIp + 1);
 		
 		
 		
@@ -78,7 +84,7 @@ public class company
 			
 		}
 		
-		return true;
+		
 		
 	}
 		

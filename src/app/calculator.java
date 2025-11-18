@@ -11,14 +11,16 @@ public class calculator
 	public static void subnetCalc(department dep,  List<subnetRange> available)
 	{
 		
-	
+		if (dep.ipsNeeded == 0)
+		{
+			dep.networkAddress = -2;
+			return;
+		}
 		int bitsNeeded = 0;
 		while (Math.pow(2, bitsNeeded)-2 < dep.ipsNeeded)
 		{
 			bitsNeeded++;
 		}
-		System.out.println("Here are the amount of bits needed: " + bitsNeeded);
-		
 		
 		
 		int prefix = 32 - bitsNeeded;
@@ -70,8 +72,7 @@ public class calculator
 		{
 			
 			dep.networkAddress = -1;
-			System.out.println("There are not enough IPV4 Address available because " + blockSize + " IP Addresses are not available "
-					+ "for the department's " + dep.ipsNeeded + " IP addresses it needs");
+			
 			return;
 		}
 		
@@ -87,13 +88,6 @@ public class calculator
 		dep.broadcastAddress = broadcastAddress;
 		dep.subnetMask = subnetMask;
 		dep.prefix = prefix;
-		
-		
-		System.out.println("Network Address: " + longToIP(networkAddress) + "/" + prefix);
-		System.out.println("Broadcast Address: " + longToIP(broadcastAddress)+ "/" + prefix);
-		System.out.println("Subnet Mask: " + longToIP(subnetMask));
-		
-		
 		
 		
 	}
