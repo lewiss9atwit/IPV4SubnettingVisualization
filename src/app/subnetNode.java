@@ -16,7 +16,7 @@ public class subnetNode
 	{
 		this.size = (long) Math.pow(2,32-dep.prefix);
 		this.depUses = true;
-		this.companyName = dep.name;
+		this.companyName = "Deparment Name: " + dep.name;
 		this.networkAddress = ("Network Address: " + calculator.longToIP(dep.networkAddress) + "/" + dep.prefix);
 		this.broadcastAddress = ("Broadcast Address: " + calculator.longToIP(dep.broadcastAddress)+ "/" + dep.prefix);
 		this.subnetMask  = ("Subnet Mask: " + calculator.longToIP(dep.subnetMask));

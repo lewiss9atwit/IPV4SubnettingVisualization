@@ -112,73 +112,9 @@ public class main extends Application
 		mainCompany.subnetCompany();
 		allNodes companyNodes = new allNodes(mainCompany);
 		
-		/* testing subnetNode
-		for (subnetNode sn : testV.subnetNodes)
-		{
-			System.out.println(sn.networkAddress);
-			System.out.println(sn.broadcastAddress);
-			System.out.println(sn.subnetMask);
-		}
-		*/
-		
-		
-		
-		/*
-		allNodes companyNodes = new allNodes(mainCompany);
-		visualizeSubnets.visualPane(root, companyNodes);
-		
-		*/
-		
-		
-		
-		
-		
-		
-		
 
 		
-		/*
-		subnetNode testSn = new subnetNode(testComp.deps[0]);
-		Rectangle testRec  = visuals.putTextInRec(root, testSn);
-        	
 		
-		double centerX = 1920 / 2.0;
-		double centerY = 1080 / 2.0;
-		
-		
-		
-		// Puts the text in circle C
-		
-		
-		
-		Group testCBubble = visuals.makeLabeledCircle(256, 50, Color.LIGHTBLUE);
-	    Circle testC = (Circle) testCBubble.getChildren().get(0);
-	    testC.setCenterX(centerX);
-		testC.setCenterY(centerY);
-
-	    Group testRBubble = visuals.makeLabeledCircle(128, 50, Color.LIGHTBLUE);
-	    Circle testR = (Circle) testRBubble.getChildren().get(0);
-
-	    Group testABubble = visuals.makeLabeledCircle(64, 50, Color.LIGHTBLUE);
-	    Circle testA = (Circle) testABubble.getChildren().get(0);
-
-	    Group testBBubble = visuals.makeLabeledCircle(64, 50, Color.LIGHTBLUE);
-	    Circle testB = (Circle) testBBubble.getChildren().get(0);
-
-		testC.setCenterX(centerX);
-		testC.setCenterY(centerY);
-		
-		
-		
-		root.getChildren().addAll(testCBubble, testRBubble, testABubble, testBBubble);
-		visuals.placeChildBubble(root, testC, testRec, 200, 240);
-		visuals.placeChildBubble(root, testC, testR, 200, 300);
-		
-		visuals.placeChildBubble(root, testR, testA, 200, 300);
-		visuals.placeChildBubble(root, testR, testB, 200, 240);
-		
-		
-		*/
 		
 		Pane root = new Pane();
 		
