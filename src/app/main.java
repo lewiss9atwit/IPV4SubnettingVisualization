@@ -70,9 +70,9 @@ public class main extends Application
 		String ipAddressBlock = input.nextLine();
 		
 		
-		while (!company.ipAddressBlockValid(ipAddressBlock))
+		while ((!company.ipAddressBlockValid(ipAddressBlock)) || company.noIps(ipAddressBlock))
 		{
-			System.out.println("Ip address invalid please type it again");
+			System.out.println("Ip address invalid or has 2 little Ips for any department please type it again");
 			ipAddressBlock = input.nextLine();
 		}
 		

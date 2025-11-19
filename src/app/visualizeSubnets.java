@@ -12,7 +12,7 @@ public class visualizeSubnets
 	public static void visualPane(Pane root, allNodes nodes)
 	{
 		subnetNode rootNode = nodes.root;
-		
+		// If a department uses the root which is the entire company block nothing else needs to be done after making the rectangle for the department
 		if(rootNode.depUses)
 		{
 			Rectangle rootRect = visuals.putTextInRec(root, rootNode);
@@ -20,6 +20,8 @@ public class visualizeSubnets
 			rootRect.setLayoutY(2);
 			
 		}
+		
+		// Otherwise we know the root is not used so we have a tree of the company's subnetting to display
 		else
 		{
 			Group rootBubble = visuals.makeLabeledCircle(rootNode.size, 50, Color.LIGHTBLUE);
@@ -28,10 +30,13 @@ public class visualizeSubnets
 			rootC.setCenterY(55);
 			root.getChildren().addAll(rootBubble);
 			
+			
 			subnetNode leftChild = rootNode.left;
 			subnetNode rightChild = rootNode.right;
+			if (leftChild == null) {return;}
 			double lastAngleLeft = 225;
 			double lastAngleRight = 315;
+			
 			
 			if (leftChild.depUses)
 			{

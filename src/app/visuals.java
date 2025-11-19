@@ -109,7 +109,8 @@ public class visuals {
 	{
 		
 		Rectangle rect = new Rectangle(220, 100);
-        rect.setArcWidth(30);     // rounded corners
+		// rounded corners
+        rect.setArcWidth(30);     
         rect.setArcHeight(30);
         rect.setFill(Color.LIGHTGREEN);
         rect.setStroke(Color.BLACK);
@@ -162,6 +163,7 @@ public class visuals {
 				placeChildBubble(root, parentC, leftRect, 200, angleLeft);
 			}
 			
+			// If it's a circle
 			else
 			{
 				Group leftBubble = visuals.makeLabeledCircle(currentNode.size, 50, Color.LIGHTBLUE);
@@ -177,12 +179,14 @@ public class visuals {
 			
 			currentNode = parentNode.right;
 			
+			// If right child is a rectangle
 			if(currentNode.depUses)
 			{
 				Rectangle rightRect = putTextInRec(root, currentNode);
 				placeChildBubble(root, parentC, rightRect, 200, angleRight);
 			}
 			
+			// If it's a circle
 			else
 			{
 				Group rightBubble = visuals.makeLabeledCircle(currentNode.size, 50, Color.LIGHTBLUE);

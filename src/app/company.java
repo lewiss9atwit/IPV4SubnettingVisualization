@@ -13,6 +13,8 @@ public class company
 	long totalIps;
 	department[] deps;
 	boolean enoughIPs;
+	int prefix;
+	
 	
 	
 	
@@ -38,15 +40,33 @@ public class company
 		
 		
 		String[] blockParts = ipAddress.split("/");
-		try {
-			InetAddress ip = InetAddress.getByName(blockParts[0]);
-			return ip.getHostAddress().equals(blockParts[0]) && ipAddress.contains(".");
-		}
-		catch (UnknownHostException ex)
+		if (blockParts.length == 2)
 		{
-			return false;
+			int prefix = Integer.parseInt(blockParts[1]);
+			try {
+				InetAddress ip = InetAddress.getByName(blockParts[0]);
+				return ip.getHostAddress().equals(blockParts[0]) && ipAddress.contains(".") && (32 >= prefix &&  prefix >= 0);
+			}
+			catch (UnknownHostException ex)
+			{
+				return false;
+			}
 		}
+		return false;
 		
+		
+	}
+	
+	public static boolean noIps(String ipAddress)
+	{
+		
+		String[] blockParts = ipAddress.split("/");
+		if (blockParts.length == 2)
+		{
+			int prefix = Integer.parseInt(blockParts[1]);
+			return (prefix == 32);
+		}
+		return false;
 	}
 	
 	public void subnetCompany()
@@ -54,7 +74,7 @@ public class company
 		
 		String[] ipParts = this.ipAddressBlock.split("/");
 		long baseIp = calculator.ipToLong(ipParts[0]);
-		int prefix = Integer.parseInt(ipParts[1]);
+		this.prefix = Integer.parseInt(ipParts[1]);
 		
 		long mask = calculator.prefixToMask(prefix);
 		long currentIp = baseIp & mask;

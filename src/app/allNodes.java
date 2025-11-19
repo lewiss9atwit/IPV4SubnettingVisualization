@@ -136,7 +136,7 @@ public class allNodes
 		{
 			department d = unusableDepartments.get(i);
 			
-			System.out.println("There are not enough IPV4 Address available because "+ d.ipsNeeded + " IPv4 Addresses are not available for the " + d.name + " deparment.");
+			System.out.println("There are not enough IPV4 Address available for " + d.name + " because "+ d.ipsNeeded + " IPs are not avialable in the Ip address remaning.");
 		}
 		
 	}
