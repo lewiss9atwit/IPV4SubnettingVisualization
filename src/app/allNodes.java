@@ -36,16 +36,21 @@ public class allNodes
 	ArrayList<department> unusableDepartments = new ArrayList<>();
 	subnetNode root;
 	
+	
+	// allNodes constructor needs a company parameter that already has calculated subnet departments
 	public allNodes(company c)
 	{
 		createNodes(c);
 		
 	}
+	
+	// Creates the tree of nodes starting at the root which is the company block
 	public void createNodes(company comp)
 	{
 	
 		this.root = new subnetNode (comp.totalIps);
 		
+		// If the networkAddress is -1 that means the department is unable to be subnetted in the company
 		for(department d : comp.deps)
 		{
 			if(d.networkAddress == -1)
@@ -54,6 +59,8 @@ public class allNodes
 				unusableDepartments.add(d);
 				
 			}
+			
+			// Otherwise find the path to the subnetNode used by the department
 			else
 			{
 				subnetNode sN = new subnetNode(d);
@@ -88,6 +95,7 @@ public class allNodes
 		
 	}
 	
+	// Finds the path to the Node starting at the root
 	public subnetNode findNode(subnetNode subNode, subnetNode curr)
 	{
 		
@@ -128,7 +136,7 @@ public class allNodes
 	
 	
 	
-	
+	// Message printed for deartments who can not get a subnet Ip block because there aren't enough Ips available.
 	public void unusableDepmessages()
 	{
 		

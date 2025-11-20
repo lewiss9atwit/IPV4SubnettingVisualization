@@ -31,12 +31,7 @@ public class visuals {
 
 	
 	
-	public static void placeChildBubble(
-	        Pane root,
-	        Circle parent,
-	        Node child,
-	        double distance,
-	        double angleDegrees) {
+	public static void placeChildBubble(Pane root, Circle parent, Node child, double distance, double angleDegrees) {
 
 	    double angle = Math.toRadians(angleDegrees);
 
@@ -88,19 +83,21 @@ public class visuals {
 	    label.setFill(Color.BLACK);
 	    label.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 
-	    // Update label position whenever bounds or circle moves
-	    label.boundsInLocalProperty().addListener((obs, oldV, newV) -> {
-	        label.setX(circle.getCenterX() - newV.getWidth() / 2);
-	        label.setY(circle.getCenterY() + newV.getHeight() / 4);
-	    });
+	    // Force JavaFX to compute text size now
+	    label.applyCss();
+	    
+	    // Initial centering
+	    centerText(label, circle);
 
+	    // Move text to center of circle when the circle moves
 	    circle.centerXProperty().addListener((obs, oldV, newV) -> {
-	        label.setX(newV.doubleValue() - label.getBoundsInLocal().getWidth() / 2);
+	        centerText(label, circle);
 	    });
 
 	    circle.centerYProperty().addListener((obs, oldV, newV) -> {
-	        label.setY(newV.doubleValue() + label.getBoundsInLocal().getHeight() / 4);
+	        centerText(label, circle);
 	    });
+
 
 	    return new Group(circle, label);
 	}
@@ -116,8 +113,9 @@ public class visuals {
         rect.setStroke(Color.BLACK);
         rect.setStrokeWidth(2);
         
+        // Text in the rectangle
         Text t0 = new Text(depSn.companyName);
-        Text s0 = new Text(depSn.size + " Ips");
+        Text s0 = new Text(depSn.ipsNeeded + " Ips needed");
         Text t1 = new Text(depSn.networkAddress);
         Text t2 = new Text(depSn.broadcastAddress);
         Text t3 = new Text(depSn.subnetMask);
@@ -146,7 +144,7 @@ public class visuals {
         
 	}
 	
-	
+	// Draws the children of the parent circle if they exist
 	public static void drawChildren(Pane root, Circle parentC, subnetNode parentNode, double angleLeft, double angleRight)
 	{
 		
@@ -169,7 +167,6 @@ public class visuals {
 				Group leftBubble = visuals.makeLabeledCircle(currentNode.size, 50, Color.LIGHTBLUE);
 				Circle leftCircle = (Circle) leftBubble.getChildren().get(0);
 				root.getChildren().addAll(leftBubble);
-				// angleLeft += 10;
 				placeChildBubble(root, parentC, leftCircle, 200, angleLeft);
 				drawChildren(root, leftCircle, currentNode, angleLeft, angleRight);
 				
@@ -192,7 +189,6 @@ public class visuals {
 				Group rightBubble = visuals.makeLabeledCircle(currentNode.size, 50, Color.LIGHTBLUE);
 				Circle rightCircle = (Circle) rightBubble.getChildren().get(0);
 				root.getChildren().addAll(rightBubble);
-				// angleLeft += 10;
 				placeChildBubble(root, parentC, rightCircle, 200, angleRight);
 				drawChildren(root, rightCircle, currentNode, angleLeft, angleRight);
 				
@@ -200,6 +196,15 @@ public class visuals {
 				
 			}
 		}
+	}
+	
+	private static void centerText(Text text, Circle circle) 
+	{
+	    double w = text.getLayoutBounds().getWidth();
+	    double h = text.getLayoutBounds().getHeight();
+
+	    text.setX(circle.getCenterX() - w / 2);
+	    text.setY(circle.getCenterY() + h / 4); 
 	}
 	        
 }

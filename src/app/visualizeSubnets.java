@@ -41,14 +41,14 @@ public class visualizeSubnets
 			if (leftChild.depUses)
 			{
 				Rectangle leftRect = visuals.putTextInRec(root, leftChild);
-				visuals.placeChildBubble(root, rootC, leftRect, 500, 195);
+				visuals.placeChildBubble(root, rootC, leftRect, 300, 210);
 			}
 			else
 			{
 				Group leftBubble = visuals.makeLabeledCircle(leftChild.size, 50, Color.LIGHTBLUE);
 				Circle leftCircle = (Circle) leftBubble.getChildren().get(0);
 				root.getChildren().addAll(leftBubble);
-				visuals.placeChildBubble(root, rootC, leftCircle, 200, 225);
+				visuals.placeChildBubble(root, rootC, leftCircle, 300, 210);
 				visuals.drawChildren(root, leftCircle, leftChild, lastAngleLeft, lastAngleRight);
 				
 			}
@@ -56,7 +56,7 @@ public class visualizeSubnets
 			if (rightChild.depUses) 
 			{
 				Rectangle rightRect = visuals.putTextInRec(root, rightChild);
-				visuals.placeChildBubble(root, rootC, rightRect, 500, 345);
+				visuals.placeChildBubble(root, rootC, rightRect, 300, 330);
 				
 				
 			}
@@ -65,7 +65,7 @@ public class visualizeSubnets
 				Group rightBubble = visuals.makeLabeledCircle(rightChild.size, 50, Color.LIGHTBLUE);
 				Circle rightCircle = (Circle) rightBubble.getChildren().get(0);
 				root.getChildren().addAll(rightBubble);
-				visuals.placeChildBubble(root, rootC, rightCircle, 200, 315);
+				visuals.placeChildBubble(root, rootC, rightCircle, 300, 330);
 				visuals.drawChildren(root, rightCircle, rightChild, lastAngleLeft, lastAngleRight);
 			}
 		   

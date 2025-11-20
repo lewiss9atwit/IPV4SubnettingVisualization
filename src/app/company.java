@@ -27,7 +27,7 @@ public class company
 		
 	}
 	
-	
+	// Tests the ipAddressBlock of the company to see if it can be used
 	public static boolean ipAddressBlockValid(String ipAddress)
 	{
 		

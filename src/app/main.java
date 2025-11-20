@@ -49,18 +49,26 @@ public class main extends Application
 	{
 		Scanner input = new Scanner(System.in);
 		
+		// For testing
 		/*
-		department test = new department("Testing", 62);
+		department test1 = new department("Testing", 14);
 		department test2 = new department("TestingBoth", 126);
 		department test3 = new department("Testing3", 62);
 		department test4 = new department("Testing4", 254);
 		department test5 = new department("Testing5", 510);
 		department test6 = new department("Testing 6", 29);
-		department[] deps = new department[] {test3, test6};
-		company testComp = new company("Comp", "192.156.24.5/24", deps);
+		department[] depsT = new department[] {test4, test2, test3, test1};
+		company testComp = new company("Comp", "192.156.24.5/23", depsT);
 		testComp.subnetCompany();
+		allNodes testCompanyNodes = new allNodes(testComp);
+		Pane rootTest = new Pane();
+		visualizeSubnets.visualPane(rootTest, testCompanyNodes);
+		Scene sceneT = new Scene(rootTest, 1920, 1080);
+		stage.setTitle(testComp.name + "'s IPV4 Subnetting");
+		stage.setScene(sceneT);
+        stage.show();
+        testCompanyNodes.unusableDepmessages();
 		*/
-		
 		
 		
 		ArrayList<department> departments = new ArrayList<>();
@@ -100,25 +108,18 @@ public class main extends Application
 			
 		}
 		
-		// Sorts departments to have the deparments with the largest amount of ips first then descending down to the next max until the end
+		// Sorts departments to have the departments with the largest amount of ips first then descending down to the next max until the end
 		departments.sort((a, b) -> Integer.compare(b.ipsNeeded, a.ipsNeeded));
 		department[] deps = departments.toArray(department[]:: new);
-		
-		
-		
-		
 		
 		company mainCompany = new company(Company, ipAddressBlock, deps);
 		mainCompany.subnetCompany();
 		allNodes companyNodes = new allNodes(mainCompany);
 		
-
 		
-		
-		
+		// Visual Side of the program
 		Pane root = new Pane();
-		
-		visualizeSubnets.visualPane(root, companyNodes);
+		visualizeSubnets.visualPane(root, companyNodes);	
 		Scene scene = new Scene(root, 1920, 1080);
 		stage.setTitle(mainCompany.name + "'s IPV4 Subnetting");
 		stage.setScene(scene);

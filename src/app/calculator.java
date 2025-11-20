@@ -26,7 +26,7 @@ public class calculator
 		int prefix = 32 - bitsNeeded;
 		long subnetMask = prefixToMask(prefix);
 		
-		// The amount of ips subnetted not taking into account network address and broadcast address needed to aligntheUp
+		// The amount of Ips subnetted not taking into account network address and broadcast address needed to aligntheUp
 		long blockSize = (long) Math.pow(2,  bitsNeeded);
 		
 		
@@ -61,10 +61,6 @@ public class calculator
 				break;
 			}
 			
-		
-			
-			
-			
 			
 		}
 		
@@ -92,26 +88,6 @@ public class calculator
 		
 	}
 	
-	
-	/*
-	public static boolean subnettingPossible(long baseIp, int bitsNeeded)
-	{
-		
-		// Checks if there are enough ips for the department.
-		long ipsAvailable = baseEnd - baseIp + 1;
-		long blockSize = (long) Math.pow(2, bitsNeeded);
-		if (ipsAvailable  <  blockSize)
-		{
-			System.out.println("There are not enough IPV4 Address available becasue there are " + ipsAvailable + " availalbe while regarding networkAddress and broadcast Address.\nAnd we need "+ blockSize + " addresses.");
-			return false;
-		}
-		
-		return true;
-		
-		
-		
-	}
-	*/
 	
 	// Ensure that the Ip for example using 128 Ips starts at either x.x.x.128 or x.x.x.0 and not at x.x.x. 64 which is not possible because that is the second part of a split 128 Ips.
 	public static long alignIpStart(long currentIp, long BlockSize)

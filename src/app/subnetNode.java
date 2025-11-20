@@ -11,10 +11,12 @@ public class subnetNode
 	public subnetNode left;
 	public subnetNode right;
 	public subnetNode parent;
+	public long ipsNeeded;
 	
 	public subnetNode(department dep)
 	{
 		this.size = (long) Math.pow(2,32-dep.prefix);
+		this.ipsNeeded = dep.ipsNeeded;
 		this.depUses = true;
 		this.companyName = "Deparment Name: " + dep.name;
 		this.networkAddress = ("Network Address: " + calculator.longToIP(dep.networkAddress) + "/" + dep.prefix);
