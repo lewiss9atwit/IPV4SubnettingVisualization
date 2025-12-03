@@ -19,8 +19,8 @@ public class subnetNode
 		this.ipsNeeded = dep.ipsNeeded;
 		this.depUses = true;
 		this.companyName = "Deparment Name: " + dep.name;
-		this.networkAddress = ("Network Address: " + calculator.longToIP(dep.networkAddress) + "/" + dep.prefix);
-		this.broadcastAddress = ("Broadcast Address: " + calculator.longToIP(dep.broadcastAddress)+ "/" + dep.prefix);
+		this.networkAddress = ("Subnet ID: " + calculator.longToIP(dep.networkAddress) + "/" + dep.prefix);
+		this.broadcastAddress = ("Broadcast ID: " + calculator.longToIP(dep.broadcastAddress)+ "/" + dep.prefix);
 		this.subnetMask  = ("Subnet Mask: " + calculator.longToIP(dep.subnetMask));
 		this.left = null;
 		this.right = null;
