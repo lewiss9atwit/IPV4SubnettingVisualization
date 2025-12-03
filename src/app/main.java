@@ -101,7 +101,6 @@ public class main extends Application
 			departmentIps = input.nextInt();
 			department dep1 = new department(departmentName1, departmentIps);
 			departments.add(dep1);
-			
 			input.nextLine();
 			System.out.println("What is the name of this department?");
 			departmentName1 = input.nextLine();
@@ -115,7 +114,6 @@ public class main extends Application
 		company mainCompany = new company(Company, ipAddressBlock, deps);
 		mainCompany.subnetCompany();
 		allNodes companyNodes = new allNodes(mainCompany);
-		
 		
 		// Visual Side of the program
 		Pane root = new Pane();
