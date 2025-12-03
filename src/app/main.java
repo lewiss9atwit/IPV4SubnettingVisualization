@@ -124,7 +124,6 @@ public class main extends Application
 		stage.setTitle(mainCompany.name + "'s IPV4 Subnetting");
 		stage.setScene(scene);
         stage.show();
-		
         companyNodes.unusableDepmessages();
 		
 		
